@@ -2,7 +2,7 @@
 @section('content')
 <div class="margin-welcome">
     <div class="row">
-        <div class="col-8 bg-secondary colback">
+        <div class="col-9 bg-secondary colback">
             <div class="d-flex justify-content-between">
                 <h4>たび Logタイトル : </h4>
                 <h5>いいね！０</h5>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 bg-danger">
+        <div class="col-3 bg-danger">
             <h4>aaa</h4>
         </div>
         </div>
