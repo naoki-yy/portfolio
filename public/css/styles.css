@@ -21,3 +21,13 @@
 .text-bg-primary {
     height: 206px;
 }
+
+.border-end{
+    border :1px solid black;
+}
+
+.de {
+    display: inline-block;
+    margin-top: 60px;
+    margin-left: 10px;
+}

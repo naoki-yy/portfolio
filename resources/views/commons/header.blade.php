@@ -18,7 +18,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    <li class="nav-item"><a href="" class="nav-link">たび Log登録する</a></li>
+                    <li class="nav-item"><a href="{{ route("post.create") }}" class="nav-link">たび Log登録する</a></li>
                     <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link">ログアウト</a></li>
                     <li class="nav-item"><a href="" class="nav-link">マイページ</a></li>
                 @else
