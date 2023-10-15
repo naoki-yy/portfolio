@@ -2,62 +2,85 @@
 @section('content')
 <div class= "container">
     <h2 class="mt-3">たび Logを投稿する</h2>
-    <form method="POST" action="{{ route('post.store') }}">
+    @include('commons.error_messages')
+    <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group mt-3">
             <div class="form-group">
                 <label for="title">たび Log タイトル</label>
-                <input id="title" type="text" class="form-control w-50" name="$posts->title" value="{{ old('$posts->title') }}">
+                <input id="title" type="text" class="form-control w-50" name="title" value="{{ old('title') }}">
             </div>
             <div class="form-row mt-3">
                 <div class="form-group col-6 mr-5">
                     <label for="title" class="mt-3">たびコンセプト</label>
-                    <input id="title" type="text" class="form-control " name="$posts->concept" value="{{ old('$posts->concept') }}">
+                    <input id="title" type="text" class="form-control " name="concept" value="{{ old('concept') }}">
                 </div>
                 <div class="form-group col-4">
                     <label for="title" class="mt-3">たびエリア</label>
-                    <input id="title" type="text" class="form-control " name="$posts->area" value="{{ old('$posts->area') }}">
+                    <input id="title" type="text" class="form-control " name="area" value="{{ old('area') }}">
                 </div>
             </div>
             <div class="form-group pb-5 mt-3 mb-5">
                 <label for="cover_image">背景画像の投稿</label>
                 <br>
-                <input id="cover_image" type="file"  name="$posts->cover_image" value="{{ old('$posts->cover_image') }}">
+                <input id="cover_image" type="file"  name="cover_image" value="{{ old('cover_image') }}">
             </div>
             
         </div>
 
+        <h3 class="mt-3">たびの<strong>「おすすめポイント」</strong>を登録</h3>
+
 
         <div class="form-group mt-3">
-            <div class="form-row">
-                <div class="form-group col-3 mr-3 border-top-0 border-bottom-0 border-left-0 border-end pr-5">
-                    <label for="triptime" class="mt-3">時間</label>
-                    <input id="triptime" type="string" class="form-control " name="$posts->triptime" placeholder="2023-08-25" value="{{ old('$posts->triptime') }}">
+            <div class="form-row mb-5 pb-4">
+                <div class="form-group col-3 mr-3 pr-5">
+                    <label for="triptime" class="mt-3 font-weight-bold">おすすめポイント  その１</label>
+                    <input id="triptime" type="string" class="form-control " name="recommendation_point1" placeholder="〜文字以内で記入" value="{{ old('recommendation_point1') }}">
                 </div>
                 <div class="form-group col-8 ml-5">
-                    <label for="heading" class="mt-3">見出し</label>
-                    <input id="heading" type="string" class="form-control " name="$posts->heading" placeholder="関西空港へ" value="{{ old('$posts->heading') }}">
-
-                    <label for="body" class="mt-3">内容</label>
-                    <input id="body" type="text" class="form-control " name="$posts->body" placeholder="たび内容を記入" value="{{ old('$posts->body') }}">
-                    <div class="form-row">
-                        <div class="col-3">
-                            <label for="traffic" class="mt-3">交通手段</label>
-                            <input id="traffic" type="string" class="form-control " name="$posts->traffic" placeholder="南海電車" value="{{ old('$posts->traffic') }}">
-                        </div>
-                        <div class="de">
-                            で
-                        </div>
-                        <div class="col-2 ml-2">
-                            <label for="traffic_detail" class="mt-3">交通時間</label>
-                            <input id="traffic_detail" type="string" class="form-control " name="$posts->traffic_detail"placeholder="６０分" value="{{ old('$posts->traffic_detail') }}">
-                        </div>
-                    </div>
+                    <label for="cover_image" class="mr-3 pr-3 font-weight-bold">画像</label>
+                    <input id="cover_image" type="file"  name="recommendation_image1" value="{{ old('recommendation_image1') }}">
+                    <br>
+                    <label for="body" class="mt-3 font-weight-bold">内容</label>
+                    <!-- <input id="body" type="text" class="form-control " name="recommendation_text1" placeholder="たび内容を記入" value="{{ old('recommendation_text1') }}"> -->
+                    <textarea id="textarea" class="form-control" name="recommendation_text1" placeholder="たび内容を記入" ></textarea>
                 </div> 
             </div>
-        </div>
-        <div class="text-center"><button type="submit" class="btn btn-dark mt-5 mb-5 center"><strong class="mr-2">+</strong>次の行程を登録</button></div>
+        </div>  
+        
+        <div class="form-group mt-3">
+            <div class="form-row  mb-5 pb-4">
+                <div class="form-group col-3 mr-3 pr-5">
+                    <label for="triptime" class="mt-3 font-weight-bold">おすすめポイント  その２</label>
+                    <input id="triptime" type="string" class="form-control " name="recommendation_point2" placeholder="〜文字以内で記入" value="{{ old('recommendation_point2') }}">
+                </div>
+                <div class="form-group col-8 ml-5">
+                    <label for="cover_image" class="mr-3 pr-3 font-weight-bold">画像</label>
+                    <input id="cover_image" type="file"  name="recommendation_image2" value="{{ old('recommendation_image2') }}">
+                    <br>
+                    <label for="body" class="mt-3 font-weight-bold">内容</label>
+                    <!-- <input id="body" type="text" class="form-control " name="recommendation_text2" placeholder="たび内容を記入" value="{{ old('recommendation_text2') }}"> -->
+                    <textarea id="textarea" class="form-control" name="recommendation_text2" placeholder="たび内容を記入" ></textarea>
+                </div> 
+            </div>
+        </div> 
 
+        <div class="form-group mt-3">
+            <div class="form-row  mb-5 pb-4">
+                <div class="form-group col-3 mr-3 pr-5">
+                    <label for="triptime" class="mt-3 font-weight-bold">おすすめポイント  その３</label>
+                    <input id="triptime" type="string" class="form-control " name="recommendation_point3" placeholder="〜文字以内で記入" value="{{ old('recommendation_point3') }}">
+                </div>
+                <div class="form-group col-8 ml-5">
+                    <label for="cover_image" class="mr-3 pr-3 font-weight-bold">画像</label>
+                    <input id="cover_image" type="file"  name="recommendation_image3" value="{{ old('recommendation_image3') }}">
+                    <br>
+                    <label for="body" class="mt-3 font-weight-bold">内容</label>
+                    <!-- <input id="body" type="textarea" class="form-control" name="recommendation_text3" placeholder="たび内容を記入" value="{{ old('recommendation_text3') }}"> -->
+                    <textarea id="textarea" class="form-control" name="recommendation_text3" placeholder="たび内容を記入" ></textarea>
+                </div> 
+            </div>
+        </div> 
 
         <div class="text-center"><button type="submit" class="btn btn-primary mt-5 mb-5 btn-lg">たび Log 登録</button></div>
     </form>

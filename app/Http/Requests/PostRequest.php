@@ -24,16 +24,19 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'cover_image' => '',
-            'day_count' => '',
-            'title' => '',
-            'concept' => '',
-            'area' => '',
-            'triptime' => '',
-            'heading' => '',
-            'body' => '',
-            'traffic' => '',
-            'traffic_detail' => '',
+            'cover_image' => 'max:255',
+            'title' => 'max:255',
+            'concept' => 'max:255',
+            'area' => 'max:255',
+            'recommendation_point1' => 'required|max:30',
+            'recommendation_image1' => "max:255",
+            'recommendation_text1' => 'max:255',
+            'recommendation_point2' => 'required|max:30',
+            'recommendation_image2' => 'max:255',
+            'recommendation_text2' => 'max:255',
+            'recommendation_point3' => 'required|max:30',
+            'recommendation_image3' => 'max:255',
+            'recommendation_text3' => 'max:255',
 
         ];
     }
@@ -42,15 +45,18 @@ class PostRequest extends FormRequest
     {
         return [
             'cover_image' => '背景画像',
-            'day_count' => '日付',
             'title' => 'たびLogタイトル',
             'concept' => 'たびコンセプト',
             'area' => 'たびエリア',
-            'triptime' => '時間',
-            'heading' => '見出し',
-            'body' => '内容',
-            'traffic' => '交通手段',
-            'traffic_detail' => '交通時間',
+            'recommendation_point1' => 'おすすめポイント その１',
+            'recommendation_text1' => 'おすすめポイント１の内容',
+            'recommendation_image1' => '',
+            'recommendation_point2' => 'おすすめポイント その２',
+            'recommendation_image2' => '',
+            'recommendation_text2' => 'おすすめポイント２の内容',
+            'recommendation_point3' => 'おすすめポイント その３',
+            'recommendation_image3' => '',
+            'recommendation_text3' => 'おすすめポイント３の内容',
         ];
     }
 }

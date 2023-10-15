@@ -13,41 +13,31 @@ class PostsController extends Controller
 {
     public function create()
     {
-        $user = \Auth::user();
-        $posts = $user->posts()->orderBy('id', 'desc')->paginate(4);
-
-        foreach($posts as $post) {
-            $days = $post->days()->get();
-                foreach($days as $day) {
-                    $schedules = $day->schedules()->get();
-                };
-        };
-
-        $data = [
-            'user' => $user,
-            'posts' => $posts,
-        ];
-        return view('posts.create', $data);
+        return view('posts.create');
     }
 
     public function store(PostRequest $request)
     {
         $post = new Post;
-        $day = new Day;
-        $schedule = new Schedule;
         
         $post->cover_image = $request->cover_image;
-        $day->day_count = $request->day_count;
-        $schedule->title = $request->title;
-        $schedule->concept = $request->concept;
-        $schedule->area = $request->area;
-        $schedule->triptime = $request->triptime;
-        $schedule->heading = $request->heading;
-        $schedule->body = $request->body;
-        $schedule->traffic = $request->traffic;
-        $schedule->traffic_detail = $request->traffic_detail;
+
 
         $post->user_id = $request->user()->id;
+        
+        $post->title = $request->title;
+        $post->concept = $request->concept;
+        $post->area = $request->area;
+        $post->recommendation_point1 = $request->recommendation_point1;
+        $post->recommendation_image1 = $request->recommendation_image1;
+        $post->recommendation_text1 = $request->recommendation_text1;
+        $post->recommendation_point2 = $request->recommendation_point2;
+        $post->recommendation_image2 = $request->recommendation_image2;
+        $post->recommendation_text2 = $request->recommendation_text2;
+        $post->recommendation_point3 = $request->recommendation_point3;
+        $post->recommendation_image3 = $request->recommendation_image3;
+        $post->recommendation_text3 = $request->recommendation_text3;
+
         $post->save();
         return back();
     }
@@ -60,4 +50,18 @@ class PostsController extends Controller
         }
         return back();
     }
-}
+
+    public function log($user_id, $id)
+    {
+        $user = User::find($user_id);
+        $post = Post::find($id);
+        $data = [
+            'user' => $user,
+            'post' => $post,
+        ];
+
+        return view('users.log', $data);
+    }
+
+    }
+

@@ -16,7 +16,20 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->string("cover_image");
+            $table->string("cover_image")->nullable();
+
+            $table->string("title");
+            $table->string("concept");
+            $table->string("area");
+            $table->string("recommendation_point1");
+            $table->string("recommendation_image1")->nullable();
+            $table->string("recommendation_text1");          
+            $table->string("recommendation_point2"); 
+            $table->string("recommendation_image2")->nullable(); 
+            $table->string("recommendation_text2");
+            $table->string("recommendation_point3"); 
+            $table->string("recommendation_image3") ->nullable();
+            $table->string("recommendation_text3"); 
             $table->timestamps();
             $table->softDeletes();
             // 外部キー制約

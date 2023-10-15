@@ -1,22 +1,24 @@
 @extends('layouts.app')
 @section('content')
-<h2 class="mt-2 mb-3 ml-3">みんなのたび Log</h2>
-<div>
-    @foreach ($users as $user)
-        @php
-            $post = $user->posts->last();
-        @endphp
-        @if($post)
+<h2 class="mt-2 mb-3 ml-3">{{$user->name}} のたび Log</h2>
+    <ul class="nav nav-tabs nav-justified mt-5 mb-5">
+        <li class="nav-item nav-link {{ Request::is('users/'. $user->id) ? 'active' : '' }}"><a href="{{ route('users.show', $user->id) }}">たびLog<br><div class="badge badge-secondary">{{ $countPosts }}</div></a></li>
+        <li class="nav-item nav-link><a href="">いいね一覧<br><div class="badge badge-secondary"></div></a></li>
+    </ul>
+   
+    @if($posts)    
+    @foreach ($posts as $post)
+        
         <div class="margin-welcome">
             <div class="row">
                 <div class="col-9 bg-secondary colback">
                     <div class="d-flex justify-content-between">
-                            <h4 class="text-white">たび Logタイトル : {{ $post->title }}</h4>
+                        <h4 class="text-white">たび Logタイトル : {{$post->title}}</h4>
                         <h5>いいね！０</h5>
                     </div>
                     <div class="row row-height">
                         <div class="col-8 bg-dark backgroud-height">
-                            <h4 class="text-white">{{ $post -> cover_image}}</h4>
+                            <h4 class="text-white">投稿画像が入る箇所</h4>
                         </div>
                         <div class="col-4 card text-bg-primary mb-3">
                             <div class="card-header">たび地 : {{$post->area}}</div>
@@ -28,12 +30,8 @@
                     </div>
                 </div>
                 <div class="col-3 bg-dark">
-                    @if(Auth::user()->name === $user ->name)
-                    <h4 class="mt-3"><a href="{{ route('users.mypage') }}" class=" text-white">たび人：{{$user -> name}}</a></h4>
-                    @else
-                    <h4 class="mt-3"><a href="{{ route('users.show',$user->id) }}" class=" text-white">たび人：{{$user -> name}}</a></h4>
-                    @endif
-                    <button type="button" class="mt-3 btn btn-primary btn-lg"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
+                    <h4 class="mt-3 text-white">たび人：{{$user -> name}}</h4>
+                    <button type="button" class="mt-3 btn btn-primary btn-lg"><a href="/" class="text-white">たび Logを見る</a></button>
                     </br>
                     <button type="button" class="mt-3 btn btn-secondary">いいね！</button>
                     </br>
@@ -47,9 +45,10 @@
                     @endif
                 </div>
             </div>
-        </div>
-        @endif
+        </div>     
     @endforeach
-</div>
-{{ $users->links('pagination::bootstrap-4') }}
+    @else
+    <p>ユーザは投稿していません</p>
+    @endif
+
 @endsection
