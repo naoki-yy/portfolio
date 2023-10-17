@@ -32,3 +32,6 @@
     margin-left: 10px;
 }
 
+.image-fit {
+    object-fit: cover;
+}

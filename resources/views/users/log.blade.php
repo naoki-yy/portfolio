@@ -1,17 +1,21 @@
 @extends('layouts.app')
 @section('content')
+
+    @php
+        $totalFavorites = $post->favoriteUsers()->count();
+    @endphp
 <div class="container">
     <div class="d-flex">
         <div>
             <h1>{{ $post->title}}</h1>
             <h5 style="border-top: solid thick #6C757D"></h5>
         </div>
-        <h5 class="ml-5 mt-4 pt-1">いいね！ 0</h5>
+        <h5 class="ml-5 mt-4 pt-1 text-dangerbadge badge-pill badge-success">いいね！ {{ $totalFavorites }}</h5>
     </div>
 
     <div class="row mt-4">
         <div class="col-6">
-            {{ $post->cover_image }}
+            <img src="{{ asset($post->cover_image_path)}}" alt= "投稿画像" width="500" height="300">
         </div>
         <div class="col-6">
             <h2 class="pb-3">{{$post -> concept}}</h2>
@@ -32,7 +36,7 @@
     <h5 style="border-top: solid thick #6C757D" class="w-50"></h5>
     <div class="row mt-4 pt-2">
         <div class="col-6">
-            {{ $post->recommendation_image1 }}
+            <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
         </div>
         <div class="col-6">
             <h4 class="pb-3">{{$post -> recommendation_text1}}</h4>
@@ -46,7 +50,7 @@
             <h4 class="pb-3">{{$post -> recommendation_text2}}</h4>
         </div>
         <div class="col-6">
-            {{ $post->recommendation_image2 }}
+            <img src="{{ asset($post->recommendation_image2)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
         </div>
     </div>
 
@@ -54,7 +58,7 @@
     <h5 style="border-top: solid thick #6C757D" class="w-50"></h5>
     <div class="row mt-4 pt-2">
         <div class="col-6">
-            {{ $post->recommendation_image3 }}
+            <img src="{{ asset($post->recommendation_image3)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
         </div>
         <div class="col-6">
             <h4 class="pb-3">{{$post -> recommendation_text3}}</h4>
@@ -63,6 +67,6 @@
 
 </div>
 
-    
+<div class="text-center"><button type="submit" class="btn btn-primary mt-5 mb-5 btn-lg"><a href="{{route('/')}}" class="text-white">ホーム</a></button></div>
 
 @endsection

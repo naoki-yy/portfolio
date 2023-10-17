@@ -10,12 +10,12 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(4);
-        // $posts = Post::findorfail();
+        
+        $posts = Post::orderBy('id','desc')->paginate(4);
 
         $data = [
-            'users' => $users,
-            // 'posts' => $posts,
+            // 'users' => $users,
+            'posts' => $posts,
         ];
 
         return view('users.users', $data);
@@ -24,8 +24,7 @@ class UsersController extends Controller
     public function mypage()
     {
         $user = \Auth::user();
-        $posts = Post::where('user_id', $user->id)->get();
-
+        $posts = Post::where('user_id', $user->id)->paginate(4);
         // $posts = $user->posts->get();
         $data = [
             'user' => $user,
@@ -39,6 +38,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $posts = $user->posts()->orderBy('id', 'desc')->paginate(4);
+        // $posts = Post::orderBy('id','desc')->paginate(4);
         $data=[
             'user' => $user,
             'posts' => $posts,
@@ -46,4 +46,23 @@ class UsersController extends Controller
         $data += $this->userCounts($user);
         return view('users.show',$data);
     }
+
+    public function destroy($id)
+    {
+        $user = \Auth::user();
+        $user->delete();
+        return back();
+    }
+
+    public function favorites($id)
+    {
+        $user = User::findOrFail($id);
+        $posts = $user->favorites()->paginate(4);
+        $data=[
+            'user' => $user,
+            'posts' => $posts,
+        ];
+        $data += $this->userCounts($user);
+        return view('users.show', $data);
+}
 };

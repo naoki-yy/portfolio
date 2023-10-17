@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'UsersController@index');
+Route::get('/', 'UsersController@index')->name('/');
 
 // ユーザ新規登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup');
@@ -23,9 +23,11 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-//ユーザ詳細
-Route::prefix('users')->group(function () {
-    Route::get('{id}', 'UsersController@show')->name('users.show');
+//ユーザ
+Route::group(['prefix' => 'users/{id}'],function(){
+    Route::get('', 'UsersController@show')->name('users.show');
+    Route::delete("","UsersController@destroy")->name('users.delete');
+    Route::get('favorites','UsersController@favorites')->name('users.favorites');
 });
 
 //たびLogを見る
@@ -37,10 +39,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('posts')->group(function () {
         Route::get('create', 'PostsController@create')->name('post.create');
         Route::post('', 'PostsController@store')->name('post.store');
+        //たびLog削除
         Route::delete('{id}', 'PostsController@destroy')->name('post.delete');
+        //たびLog編集
+        Route::get('{id}/edit', 'PostsController@edit')->name('post.edit');
+        Route::put('{id}', 'PostsController@update')->name('post.update');
     });
 
     //マイページ
     Route::get('mypage', 'UsersController@mypage')->name('users.mypage');
+
+    // いいね
+    Route::group(['prefix' => 'posts/{id}'],function(){
+        Route::post('favorite','FavoriteController@store')->name('favorite');
+        Route::delete('unfavorite','FavoriteController@destroy')->name('unfavorite');
+    });
     
 });
