@@ -1,23 +1,12 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-between">
-    <h2 class="mt-2 mb-3 ml-3 mr-3">{{$user->name}} のたび Log</h2>
-    <form method="POST" action="{{ route ( 'users.delete' , $user->id) }}" >
-        @csrf
-        @method("DELETE")
-        <button type="submit" class="btn btn-danger btn-sm mr-3">退会する</button>
-    </form>
+<div class="d-flex justify-content-between mb-2">
+    <h3 class="mt-2 mb-3 ml-3">たび Log  検索結果</h3>
+    <button type="submit" class="btn btn-primary mr-3 btn-sm"><a href="{{route('/')}}" class="text-white">ホームへ戻る</a></button>
 </div>
-
-
-<ul class="nav nav-tabs nav-justified mt-3 mb-5">
-    <li class="nav-item nav-link {{ Request::is('users/'. $user->id) ? 'active' : '' }}"><a href="{{ route('users.show', $user->id) }}">たびLog<br><div class="badge badge-secondary">{{ $countPosts }}</div></a></li>
-    <li class="nav-item nav-link {{ Request::is('users/'. $user->id. '/favorites') ? 'active' : '' }}"><a href="{{ route('users.favorites', $user->id) }}">いいね一覧<br><div class="badge badge-secondary">{{ $countFavorites }}</div></a></li>
-</ul>
-<div>
-@if($posts -> count() > 0)    
+   
+    @if($posts->count() > 0)    
     @foreach ($posts as $post)
-
         @php
             $user = $post->user->get();
             $totalFavorites = $post->favoriteUsers()->count();
@@ -30,8 +19,8 @@
                         <h4 class="text-white">たび Logタイトル : {{$post->title}}</h4>
                         <h5>
                             <div class="text-right">
-                                <span class="badge badge-pill badge-primary">{{ $totalFavorites }} いいね!</span>
-                            </div>
+                            <span class="badge badge-pill badge-primary">{{ $totalFavorites }} いいね!</span>
+                        </div>
                         </h5>
                     </div>
                     <div class="row row-height">
@@ -52,33 +41,28 @@
                     </div>
                 </div>
                 <div class="col-3 bg-dark">
-                    <h4 class="mt-3 text-white">たび人：{{$post-> user -> name}}</h4>
-                    <button type="button" class="mt-3 btn btn-primary btn-lg"><a href="/" class="text-white">たび Logを見る</a></button>
+                    <h4 class="mt-3 text-white">たび人：{{$post ->user->name}}</h4>
+                    <button type="button" class="mt-3 btn btn-primary btn-lg mb-3"><a href="/" class="text-white">たび Logを見る</a></button>
                     </br>
-                    <button type="button" class="mt-3 btn btn-secondary">いいね！</button>
+                    <!-- <button type="button" class="mt-3 btn btn-secondary">いいね！</button> -->
+                    @include('favorite.favorite_button', ['post' => $post])
                     </br>
-                    <button type="button" class="mt-3 btn btn-primary">SNS共有</button>
+                    <button type="button" class="mt-2 btn btn-primary">SNS共有</button>
                     @if (Auth::id() === $post->user_id)
-                    <div class="d-flex justify-content-between">
                         <form method="POST" action="{{ route('post.delete', $post->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">このたび Logを削除する</button>
                         </form>
-                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">編集する</a>
-                    </div>
                     @endif
                 </div>
             </div>
         </div>     
     @endforeach
+    @else 
+    <h3>検索結果はありません</h3>
+    @endif
+
     {{ $posts->links('pagination::bootstrap-4') }}
-@else
-<p>ユーザは投稿していません</p>
-@endif
 
-
-
-<div class="text-center"><button type="submit" class="btn btn-primary mt-5 mb-5 btn-lg"><a href="{{route('/')}}" class="text-white">ホーム</a></button></div>
-</div>  
 @endsection

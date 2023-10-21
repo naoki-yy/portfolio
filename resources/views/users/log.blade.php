@@ -15,7 +15,11 @@
 
     <div class="row mt-4">
         <div class="col-6">
-            <img src="{{ asset($post->cover_image_path)}}" alt= "投稿画像" width="500" height="300">
+            @if($post->cover_image_path !== null)
+            <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @else
+            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @endif
         </div>
         <div class="col-6">
             <h2 class="pb-3">{{$post -> concept}}</h2>
@@ -36,7 +40,11 @@
     <h5 style="border-top: solid thick #6C757D" class="w-50"></h5>
     <div class="row mt-4 pt-2">
         <div class="col-6">
+            @if($post->recommendation_image1 !== null)
             <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @else
+            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @endif
         </div>
         <div class="col-6">
             <h4 class="pb-3">{{$post -> recommendation_text1}}</h4>
@@ -50,7 +58,11 @@
             <h4 class="pb-3">{{$post -> recommendation_text2}}</h4>
         </div>
         <div class="col-6">
-            <img src="{{ asset($post->recommendation_image2)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @if($post->recommendation_image1 !== null)
+            <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @else
+            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @endif
         </div>
     </div>
 
@@ -58,7 +70,11 @@
     <h5 style="border-top: solid thick #6C757D" class="w-50"></h5>
     <div class="row mt-4 pt-2">
         <div class="col-6">
-            <img src="{{ asset($post->recommendation_image3)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @if($post->recommendation_image1 !== null)
+            <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @else
+            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @endif
         </div>
         <div class="col-6">
             <h4 class="pb-3">{{$post -> recommendation_text3}}</h4>

@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->index();
 
-            $table->text('cover_image_path');
+            $table->text('cover_image_path')->nullable();
 
             $table->string("title");
             $table->string("concept");

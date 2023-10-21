@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
-use App\Day;
-use App\Schedule;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -46,17 +45,33 @@ class PostsController extends Controller
     private function saveImage($image)
     {
         
-       $imgPath = $image->store('image', 'public');
+        if($image !== null){
 
-       return 'storage/' . $imgPath;
+            $imgPath = $image->store('image', 'public');
+
+        return 'storage/' . $imgPath;
+        }
+        return null;
     }
+
 
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+
         if (\Auth::id() === $post->user_id) {
+            $coverImagePath = str_replace('storage/image/', '', $post->cover_image_path);
+            $recImage1 = str_replace('storage/image/', '', $post->recommendation_image1);
+            $recImage2 = str_replace('storage/image/', '', $post->recommendation_image2);
+            $recImage3 = str_replace('storage/image/', '', $post->recommendation_image3);
+    
+            Storage::disk('public')->delete('image/' . $coverImagePath);
+            Storage::disk('public')->delete('image/' . $recImage1);
+            Storage::disk('public')->delete('image/' . $recImage2);
+            Storage::disk('public')->delete('image/' . $recImage3);
             $post->delete();
         }
+
         return back();
     }
 
@@ -108,6 +123,39 @@ class PostsController extends Controller
         // return back();
         return redirect()->route('/');
     }
+
+
+    public function index(Request $request)
+{
+    $keyword = $request->input('keyword');
+    $searchOptions = $request->input('search_option');
+
+    $query = Post::query();
+
+    if (!empty($keyword)) {
+        // セレクトボタンで選択された検索オプションに基づいてクエリを構築します
+        if (in_array('title', $searchOptions)) {
+            $query->orWhere('title', 'LIKE', "%{$keyword}%");
+        }
+        if (in_array('area', $searchOptions)) {
+            $query->orWhere('area', 'LIKE', "%{$keyword}%");
+        }
+        if (in_array('name', $searchOptions)) {
+            // usersテーブルのnameカラムを対象に検索
+            $query->orWhereHas('user', function ($subQuery) use ($keyword) {
+                $subQuery->where('name', 'LIKE', "%{$keyword}%");
+            });
+        }
+        
+
+        $posts = $query->orderBy('id', 'desc')->paginate(4);
+    } else {
+        $posts = Post::orderBy('id', 'desc')->paginate(4);
+    }
+
+    return view('posts.search', ['posts' => $posts]);
+}
+
 
     }
 

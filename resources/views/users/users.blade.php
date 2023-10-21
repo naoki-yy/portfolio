@@ -1,6 +1,31 @@
 @extends('layouts.app')
 @section('content')
-<h2 class="mt-2 mb-3 ml-3">みんなのたび Log</h2>
+<div>
+    <h1 class="mt-1 mb-2 text-center">みんなのたび Log</h1>
+    <form action="{{ route('post.search') }}" method="GET" class="ml-3 pt-3 mb-4 text-center">
+    @csrf
+    <h5 class="text-center pb-2">検索条件を指定</h5>
+        <fieldset class="mb-2">
+        <input id="item-1" class="radio-inline__input" type="radio" value="title" name="search_option[]" checked="checked"/>
+        <label class="radio-inline__label" for="item-1">
+            タイトル
+        </label>
+        <input id="item-2" class="radio-inline__input" type="radio" value="area" name="search_option[]">
+        <label class="radio-inline__label" for="item-2">
+            エリア
+        </label>
+        <input id="item-3" class="radio-inline__input" type="radio" value="name" name="search_option[]">
+        <label class="radio-inline__label" for="item-3">
+                ユーザ名
+        </label>
+    </fieldset>
+
+
+    <input type="text" name="keyword">
+    <input type="submit" value="検索" class="ml-3">
+</form>
+
+</div>
 <div>
     @foreach ($posts as $post)
         @php
@@ -12,16 +37,20 @@
             <div class="row">
                 <div class="col-9 bg-secondary colback">
                     <div class="d-flex justify-content-between">
-                            <h4 class="text-white">たび Logタイトル : {{ $post->title }}</h4>
+                            <h4 class="text-white pt-1">{{ $post->title }}</h4>
                             <h5>
-                                <div class="text-right">
+                                <div class="text-right align-middle">
                                 <span class="badge badge-pill badge-primary">{{ $totalFavorites }} いいね!</span>
                                 </div>
                             </h5>
                     </div>
                     <div class="row row-height">
                         <div class="col-5 bg-dark backgroud-height p-0">
+                            @if($post->cover_image_path !== null)
                             <img src="{{ asset($post->cover_image_path)}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
+                            @else
+                            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
+                            @endif
                         </div>
                         <div class="col-7 card text-bg-primary mb-3">
                             <div class="card-header">たび地 : {{$post->area}}</div>
@@ -43,7 +72,7 @@
                     <!-- <button type="button" class="mt-3 btn btn-secondary">いいね！</button> -->
                     @include('favorite.favorite_button', ['post' => $post])
                     </br>
-                    <button type="button" class="mt-2 btn btn-primary"><a href="https://twitter.com/share? url={ページのURL} & hashtags=hashtag,hashtag2& text=リンクテキスト"  rel="nofollow"  target="_blank" class="text-white">twitter共有</a></button>
+                    <button type="button" class="mt-2 btn btn-primary"><a href="https://twitter.com/share? url={{ config('APP_URL') }} & hashtags=hashtag,hashtag2& text=リンクテキスト"  rel="nofollow"  target="_blank" class="text-white">twitter共有</a></button>
                     @if (Auth::id() === $post->user_id)
                         <form method="POST" action="{{ route('post.delete', $post->id) }}">
                             @csrf
