@@ -21,6 +21,12 @@ class UsersController extends Controller
         return view('users.users', $data);
     }
 
+    public function top()
+    {
+
+        return view('top');
+    }
+
     public function mypage()
     {
         $user = \Auth::user();

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="d-flex justify-content-between mb-2">
-    <h3 class="mt-2 mb-3 ml-3">たび Log  検索結果</h3>
+    <h3 class="mt-2 mb-3 ml-3">{{ $place }} の投稿一覧</h3>
     <button type="submit" class="btn btn-primary mr-3 btn-sm"><a href="{{route('/')}}" class="text-white">ホームへ戻る</a></button>
 </div>
    

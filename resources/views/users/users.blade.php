@@ -25,6 +25,7 @@
     <input type="submit" value="検索" class="ml-3">
 </form>
 
+
 </div>
 <div>
     @foreach ($posts as $post)

@@ -156,6 +156,14 @@ class PostsController extends Controller
     return view('posts.search', ['posts' => $posts]);
 }
 
+public function showAreaPosts($place)
+{
+    $posts = Post::where('area', 'LIKE', "%{$place}%")->orderBy('id', 'desc')->paginate(4);
+    
+    return view('posts.area_posts', compact('posts','place'));
+}
+
+
 
     }
 
