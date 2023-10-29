@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div> 
-    <h1 class="mb-2 pb-1 ml-3">AIの提案場所</h1>
+    <h1 class="mb-3 pb-1 ml-3">AIの提案場所</h1>
     <h3 class="mb-2 ml-3">
         @php
             $words = explode(' ', $response_text);
@@ -81,10 +81,11 @@
                 </div>     
             @endforeach
         @else
-            <p>このエリアに関連する投稿はありません。<a href="{{ route('post.create') }}">投稿</a>しますか？</p>
+            <h5 class="ml-3 pt-2">このエリアに関連する投稿はありません。<a href="{{ route('post.create') }}">投稿</a>しますか？</h5>
         @endif
 
-        {{ $areaPosts->links('pagination::bootstrap-4') }}
+        <!-- {{ $areaPosts->links('pagination::bootstrap-4') }} -->
+        {{$areaPosts->appends(request()->query())->links('pagination::bootstrap-4')}} 
 
     <a href="{{ route('top') }}" class="ml-3 mt-1">再度、AIで探す</a>
 </div>

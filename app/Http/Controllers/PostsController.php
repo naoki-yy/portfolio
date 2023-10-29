@@ -7,6 +7,7 @@ use App\User;
 use App\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
+// use Geocoder\Provider\GoogleMaps;
 
 class PostsController extends Controller
 {
@@ -24,6 +25,8 @@ class PostsController extends Controller
         $post->title = $request->title;
         $post->concept = $request->concept;
         $post->area = $request->area;
+
+
         $post->recommendation_point1 = $request->recommendation_point1;
         $post->recommendation_text1 = $request->recommendation_text1;
         $post->recommendation_point2 = $request->recommendation_point2;

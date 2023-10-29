@@ -1,9 +1,9 @@
-<header class="mb-4">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
+<header class="mb-4 bg-secondary">
+    <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="d-flex align-items-end m-2">
             <div>
             <h1>
-                <a class="navbar-brand text-white" href="/"><div class="display-4">たび Log</div></a>
+                <a class="navbar-brand text-white" href="/"><div class="display-4 text-white">たび Log</div></a>
                 <i class="fa-regular fa-paper-plane" style="color: #ffffff;"></i>
             </h1>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
@@ -15,10 +15,13 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
+                @php
+                    $user = Auth::User()
+                @endphp
                     <li class="nav-item"><a href="{{ route('top') }}" class="nav-link">トップに戻る</a></li>
                     <li class="nav-item"><a href="{{ route('post.create') }}" class = "nav-link">たび Log登録する</a></li>
                     <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link">ログアウト</a></li>
-                    <li class="nav-item"><a href="{{ route('users.mypage')}}" class="nav-link">マイページ</a></li>
+                    <li class="nav-item"><a href="{{ route('users.mypage')}}" class="nav-link ml-4"><h5>{{$user->name}}</h5></a></li>
                 @else
                     <li class="nav-item"><a href="{{ route('top') }}" class="nav-link">トップに戻る</a></li>
                     <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">ログイン</a></li>
@@ -28,8 +31,8 @@
         </div>
     </nav>
 </header>
-@if(Auth::check())
+<!-- @if(Auth::check())
     <h5 class="text-right mr-3 pb-3">
         ユーザー：<span class="user-name">{{ Auth::user()->name }}</span>
 </h5>
-@endif
+@endif -->

@@ -14,7 +14,6 @@ class chatGPTController extends Controller
     {
         $gpt = new Gpt;
         $placeNames = Post::pluck('area')->toArray();
-
         $gpt->sentence = $request->sentence;
         // バリデーション
         $request->validate([
@@ -43,6 +42,7 @@ class chatGPTController extends Controller
         $response_text = $response['choices'][0]['message']['content'];
         $areaPosts = Post::where('area', 'LIKE', "%$response_text%")->paginate(4);
 
+        
         return view('gptshow', compact('sentence','placeNames', 'response_text', 'areaPosts'));
     }
 }

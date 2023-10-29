@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3 bg-dark">
+                <div class="col-3 bg-secondary">
                     <h4 class="mt-3 text-white">たび人：{{$post ->user->name}}</h4>
                     <button type="button" class="mt-3 btn btn-primary btn-lg mb-3"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
                     </br>

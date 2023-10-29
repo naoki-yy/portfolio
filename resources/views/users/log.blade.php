@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     @php
         $totalFavorites = $post->favoriteUsers()->count();
     @endphp
@@ -27,8 +26,8 @@
             <h4 class="pb-3">たびエリア  :  {{$post -> area}}</h4>
         </div>
     </div>
-
-    <div class="col-6 card text-bg-primary mb-3 mt-5">
+    <div class="row">
+    <div class="col-6 card text-bg-primary mb-3 mt-5 mr-2">
         <div class="card-header">ー  たび Log 目次  ー</div>
             <div class="card-body">
                 <p class="card-text"><a href="#1" class="text-muted">１ー  {{$post->recommendation_point1}}</a></p>
@@ -36,6 +35,28 @@
                 <p class="card-text"><a href="#3" class="text-muted">３ー  {{$post->recommendation_point3}}</a></p>
             </div>
     </div>
+
+    <!-- <div class="col-5">
+        <head>
+        <title>Simple Marker</title>
+        <The callback parameter is required, so we use console.debug as a noop -->
+        <!-- <script async src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=console.debug&libraries=maps,marker&v=beta">
+        </script>
+        <style> -->
+
+        
+        <!-- </style>
+        </head>
+        <body>
+            <gmp-map center="34.65945053100586,135.49954223632812" zoom="16" map-id="DEMO_MAP_ID">
+            <gmp-advanced-marker position="{{ $post->latitude }},{{ $post->longitude }}" title="{{$post->area }}">
+            </gmp-advanced-marker>
+            </gmp-map>
+        </body>
+    </div> --> 
+    </div>
+
+
     <h1 class="mt-5 pt-1" id="1">１ー  {{$post->recommendation_point1}}</h1>
     <h5 style="border-top: solid thick #6C757D" class="w-50"></h5>
     <div class="row mt-4 pt-2">

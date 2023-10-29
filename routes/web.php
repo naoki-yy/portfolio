@@ -15,7 +15,7 @@ Route::get('top', 'UsersController@top')->name('top');
 Route::get('/', 'UsersController@index')->name('/');
 
 //AI
-Route::post('/generate-memory', 'chatGPTController@generate')->name('gpt');
+Route::get('/generate-memory', 'chatGPTController@generate')->name('gpt');
 Route::get('topic/show/{place}', 'PostsController@showAreaPosts')->name('topic.show');
 
 

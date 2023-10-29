@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-9 bg-secondary colback">
                     <div class="d-flex justify-content-between">
-                        <h4 class="text-white">たび Logタイトル : {{$post->title}}</h4>
+                        <h4 class="text-white pt-1">たび Logタイトル : {{$post->title}}</h4>
                         <h5>
                             <div class="text-right">
                                 <span class="badge badge-pill badge-primary">{{ $totalFavorites }} いいね!</span>
@@ -51,22 +51,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3 bg-dark">
+                <div class="col-3 bg-secondary">
                     <h4 class="mt-3 text-white">たび人：{{$post-> user -> name}}</h4>
-                    <button type="button" class="mt-3 btn btn-primary btn-lg"><a href="/" class="text-white">たび Logを見る</a></button>
-                    </br>
-                    <button type="button" class="mt-3 btn btn-secondary">いいね！</button>
-                    </br>
-                    <button type="button" class="mt-3 btn btn-primary">SNS共有</button>
+                    <button type="button" class="mt-3 btn border btn-lg mb-5"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
                     @if (Auth::id() === $post->user_id)
-                    <div class="d-flex justify-content-between">
-                        <form method="POST" action="{{ route('post.delete', $post->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">このたび Logを削除する</button>
-                        </form>
-                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">編集する</a>
-                    </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">編集</a>
+                            <form method="POST" action="{{ route('post.delete', $post->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">削除</button>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>

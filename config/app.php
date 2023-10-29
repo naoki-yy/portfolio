@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
+        // Geocoder\Providers\GeocoderServiceProvider::class,
         /*
          * Package Service Providers...
          */

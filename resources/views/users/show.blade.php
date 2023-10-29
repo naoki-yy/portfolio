@@ -41,20 +41,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3 bg-dark">
+                <div class="col-3 bg-secondary">
                     <h4 class="mt-3 text-white">たび人：{{$post ->user->name}}</h4>
-                    <button type="button" class="mt-3 btn btn-primary btn-lg mb-3"><a href="/" class="text-white">たび Logを見る</a></button>
-                    </br>
+                    <button type="button" class="mt-3 btn border btn-lg mb-5"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
                     <!-- <button type="button" class="mt-3 btn btn-secondary">いいね！</button> -->
                     @include('favorite.favorite_button', ['post' => $post])
-                    </br>
-                    <button type="button" class="mt-2 btn btn-primary">SNS共有</button>
                     @if (Auth::id() === $post->user_id)
-                        <form method="POST" action="{{ route('post.delete', $post->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">このたび Logを削除する</button>
-                        </form>
+                        <div class="d-flex justify-content-between mt-5 pt-3">
+                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">編集</a>
+                            <form method="POST" action="{{ route('post.delete', $post->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">削除</button>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>

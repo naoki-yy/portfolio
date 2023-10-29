@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div>
-    <h1 class="mt-1 mb-2 text-center">みんなのたび Log</h1>
-    <form action="{{ route('post.search') }}" method="GET" class="ml-3 pt-3 mb-4 text-center">
+    <h1 class="mt-1 mb-2 text-center">みんなのたび Log<i class="fa-regular fa-paper-plane ml-2 mb-2" style="color: #343a3f;"></i></h1>
+    
+    <form action="{{ route('post.search') }}" method="GET" class="ml-3 pt-3 mb-4 mx-auto border-custom1">
     @csrf
     <h5 class="text-center pb-2">検索条件を指定</h5>
         <fieldset class="mb-2">
@@ -22,10 +23,8 @@
 
 
     <input type="text" name="keyword">
-    <input type="submit" value="検索" class="ml-3">
-</form>
-
-
+    <input type="submit" value="検索" class="ml-3 text-center">
+    </form>
 </div>
 <div>
     @foreach ($posts as $post)
@@ -62,24 +61,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3 bg-dark">
+                <div class="col-3 bg-secondary">
                     @if(Auth::check() && Auth::user()->name === $post ->user->name)
                     <h4 class="mt-3"><a href="{{ route('users.mypage') }}" class=" text-white">たび人：{{$post ->user->name}}</a></h4>
                     @else
                     <h4 class="mt-3"><a href="{{ route('users.show',$post ->user_id) }}" class=" text-white">たび人：{{$post ->user->name}}</a></h4>
                     @endif
-                    <button type="button" class="mt-3 btn btn-primary btn-lg mb-3"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
-                    </br>
-                    <!-- <button type="button" class="mt-3 btn btn-secondary">いいね！</button> -->
+                    <button type="button" class="mt-3 btn border btn-lg mb-3 mb-5"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
                     @include('favorite.favorite_button', ['post' => $post])
-                    </br>
-                    <button type="button" class="mt-2 btn btn-primary"><a href="https://twitter.com/share? url={{ config('APP_URL') }} & hashtags=hashtag,hashtag2& text=リンクテキスト"  rel="nofollow"  target="_blank" class="text-white">twitter共有</a></button>
                     @if (Auth::id() === $post->user_id)
+                        <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">編集</a>
                         <form method="POST" action="{{ route('post.delete', $post->id) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">このたび Logを削除する</button>
+                            <button type="submit" class="btn btn-danger">削除</button>
                         </form>
+                        </div>
                     @endif
                 </div>
             </div>

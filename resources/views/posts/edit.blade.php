@@ -36,7 +36,7 @@
             <div class="form-row mb-5 pb-4">
                 <div class="form-group col-3 mr-3 pr-5">
                     <label for="triptime" class="mt-3 font-weight-bold">おすすめポイント  その１</label>
-                    <input id="triptime" type="string" class="form-control " name="recommendation_point1" placeholder="〜文字以内で記入" value="{{ old('recommendation_point1',$post->recommendation_point1) }}">
+                    <input id="triptime" type="string" class="form-control " name="recommendation_point1" value="{{ old('recommendation_point1',$post->recommendation_point1) }}">
                 </div>
                 <div class="form-group col-8 ml-5">
                     <label for="cover_image" class="mr-3 pr-3 font-weight-bold">画像（500px✖️300px）</label>
@@ -53,7 +53,7 @@
             <div class="form-row  mb-5 pb-4">
                 <div class="form-group col-3 mr-3 pr-5">
                     <label for="triptime" class="mt-3 font-weight-bold">おすすめポイント  その２</label>
-                    <input id="triptime" type="string" class="form-control " name="recommendation_point2" placeholder="〜文字以内で記入" value="{{ old('recommendation_point2',$post->recommendation_point2) }}">
+                    <input id="triptime" type="string" class="form-control " name="recommendation_point2" value="{{ old('recommendation_point2',$post->recommendation_point2) }}">
                 </div>
                 <div class="form-group col-8 ml-5">
                     <label for="cover_image" class="mr-3 pr-3 font-weight-bold">画像（500px✖️300px）</label>
@@ -70,7 +70,7 @@
             <div class="form-row  mb-5 pb-4">
                 <div class="form-group col-3 mr-3 pr-5">
                     <label for="triptime" class="mt-3 font-weight-bold">おすすめポイント  その３</label>
-                    <input id="triptime" type="string" class="form-control " name="recommendation_point3" placeholder="〜文字以内で記入" value="{{ old('recommendation_point3',$post->recommendation_point3) }}">
+                    <input id="triptime" type="string" class="form-control " name="recommendation_point3" value="{{ old('recommendation_point3',$post->recommendation_point3) }}">
                 </div>
                 <div class="form-group col-8 ml-5">
                     <label for="cover_image" class="mr-3 pr-3 font-weight-bold">画像（500px✖️300px）</label>
