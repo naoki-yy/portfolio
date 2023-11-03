@@ -103,32 +103,44 @@ fieldset {
     max-width:1000px;/*フォームのサイズ*/
     margin-bottom:50px;/*フォームの下に余白*/	 	
     }
-    /*検索ボックス*/
-    #sbox{
-    position:absolute;/*フォームの絶対位置*/	
-    left:0;
-    top:20; 	
-    outline:0;/*クリック時の青い枠線消す*/	
-    height:50px;/*検索ボックスの高さ*/	
-    padding:0 10px;/*テキスト位置調整*/	 
-    border-radius:15px 0px 0 15px;/*検索ボックスの角を丸める*/		
-    background:#eee;/*検索ボックスの背景カラー*/		
-    }
-    /*検索ボタン*/
-    #sbtn{
-    width:70px;/*検索ボタンの横幅*/ 
-    height:50px;/*検索ボタンの縦幅*/ 
-    position:absolute;/*検索ボタンの絶対位置*/  
-    left:434px;/*検索ボタンの位置調整*/  
-    top:20;
-    border-radius:0 15px 15px 0;/*検索ボタンの角を丸める*/ 
-    background:#7fbfff;/*検索ボタンの背景カラー*/ 
-    border:none;/*検索ボタンの枠線を消す*/ 
-    color:#fff;/*検索ボタンのテキストカラー*/ 
-    font-weight:bold;/*検索ボタンのテキスト太字*/ 
-    font-size:16px;/*検索ボタンのフォントサイズ*/ 
-    }
+
+    /* 検索ボックスの親コンテナ */
+  #search-container {
+    display: flex; /* 検索ボックスと検索ボタンを横並びに配置 */
+    align-items: center; /* 垂直方向の中央揃え */
+    width: 550px;
+  }
+  
+  /* 検索ボックス */
+  #sbox {
+    flex: 1; /* 自動的に可変幅となり、検索ボタンと均等に分かれます */
+    outline: 0; /* クリック時の青い枠線消す */
+    height: 50px; /* 検索ボックスの高さ */
+    padding: 0 10px; /* テキスト位置調整 */
+    border: none;
+    border-radius: 15px 0px 0 15px; /* 検索ボックスの角を丸める */
+    background: #eee; /* 検索ボックスの背景カラー */
+  }
+  
+  /* 検索ボタン */
+  #sbtn {
+    width: auto; /* コンテンツに合わせた幅 */
+    height: 50px; /* 検索ボタンの高さ */
+    border-radius: 0 15px 15px 0; /* 検索ボタンの角を丸める */
+    background: #7fbfff; /* 検索ボタンの背景カラー */
+    border: none; /* 検索ボタンの枠線を消す */
+    padding: 0 25px;
+    color: #fff; /* 検索ボタンのテキストカラー */
+    font-weight: bold; /* 検索ボタンのテキスト太字 */
+    font-size: 16px; /* 検索ボタンのフォントサイズ */
+  }
+
     /*検索ボタンマウスオーバー時*/
     #sbtn:hover{
     color:#666;/*検索ボタンマウスオーバー時のフォントカラー*/ 
+    }
+
+    .blueBorder {
+        outline: none !important;
+        box-shadow:none !important;
     }

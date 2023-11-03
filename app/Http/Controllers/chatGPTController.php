@@ -22,11 +22,8 @@ class chatGPTController extends Controller
 
         $gpt->sentence = $request->sentence;
 
-        // 画面で入力した質問
         $sentence = $request->input('sentence');
 
-        // .env に設定したAPIキー
-        // .env には OPENAI_API_KEY='' の形式でAPIキーを追加しておきます。
         $yourApiKey = getenv('OPENAI_API_KEY');
         $client = OpenAI::client($yourApiKey);
 
