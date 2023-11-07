@@ -7,7 +7,6 @@ use App\User;
 use App\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
-// use Geocoder\Provider\GoogleMaps;
 
 class PostsController extends Controller
 {
@@ -34,47 +33,63 @@ class PostsController extends Controller
         $post->recommendation_point3 = $request->recommendation_point3;
         $post->recommendation_text3 = $request->recommendation_text3;
 
+        if ($request->hasFile('cover_image_path')) {
+            $path1 = Storage::disk('s3')->putFile('tabilog', $request->file('cover_image_path'), 'public');
+            $post->cover_image_path = Storage::disk('s3')->url($path1);
+        } else {
+            $post->cover_image_path = asset('image/no_image.jpg'); 
+        }
 
-        $post -> cover_image_path = $this->saveImage($request->file('cover_image_path'));
-
-        $post->recommendation_image1 = $this->saveImage($request->file('recommendation_image1'));  
-        $post->recommendation_image2 = $this->saveImage($request->file('recommendation_image2')); 
-        $post->recommendation_image3 = $this->saveImage($request->file('recommendation_image3')); 
+        if ($request->hasFile('recommendation_image1')) {
+            $path2 = Storage::disk('s3')->putFile('tabilog', $request->file('recommendation_image1'), 'public');
+            $post->recommendation_image1 = Storage::disk('s3')->url($path2);
+        } else {
+            $post->recommendation_image1 = asset('image/no_image.jpg'); 
+        }
+        
+        if ($request->hasFile('recommendation_image2')) {
+            $path3 = Storage::disk('s3')->putFile('tabilog', $request->file('recommendation_image2'), 'public');
+            $post->recommendation_image2 = Storage::disk('s3')->url($path3);
+        } else {
+            $post->recommendation_image2 = asset('image/no_image.jpg'); 
+        }
+        
+        if ($request->hasFile('recommendation_image3')) {
+            $path4 = Storage::disk('s3')->putFile('tabilog', $request->file('recommendation_image3'), 'public');
+            $post->recommendation_image3 = Storage::disk('s3')->url($path4);
+        } else {
+            $post->recommendation_image3 = asset('image/no_image.jpg'); 
+        }
+        
         $post->save();
-        // return back();
+        
+ 
         return redirect()->route('/');
     }
-
-    private function saveImage($image)
-    {
-        
-        if($image !== null){
-
-            $imgPath = $image->store('image', 'public');
-
-        return 'storage/' . $imgPath;
-        }
-        return null;
-    }
-
 
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
 
         if (\Auth::id() === $post->user_id) {
-            $coverImagePath = str_replace('storage/image/', '', $post->cover_image_path);
-            $recImage1 = str_replace('storage/image/', '', $post->recommendation_image1);
-            $recImage2 = str_replace('storage/image/', '', $post->recommendation_image2);
-            $recImage3 = str_replace('storage/image/', '', $post->recommendation_image3);
-    
-            Storage::disk('public')->delete('image/' . $coverImagePath);
-            Storage::disk('public')->delete('image/' . $recImage1);
-            Storage::disk('public')->delete('image/' . $recImage2);
-            Storage::disk('public')->delete('image/' . $recImage3);
+            $coverImageURL = $post->cover_image_path;
+            $recommendationImage1URL = $post->recommendation_image1;
+            $recommendationImage2URL = $post->recommendation_image2;
+            $recommendationImage3URL = $post->recommendation_image3;
+        
             $post->delete();
+        
+            $coverImageURL = str_replace('https://tabilog-image.s3.ap-northeast-1.amazonaws.com/', '', $coverImageURL);
+            $recommendationImage1URL = str_replace('https://tabilog-image.s3.ap-northeast-1.amazonaws.com/', '', $recommendationImage1URL);
+            $recommendationImage2URL = str_replace('https://tabilog-image.s3.ap-northeast-1.amazonaws.com/', '', $recommendationImage2URL);
+            $recommendationImage3URL = str_replace('https://tabilog-image.s3.ap-northeast-1.amazonaws.com/', '', $recommendationImage3URL);
+    
+            Storage::disk('s3')->delete($coverImageURL);
+            Storage::disk('s3')->delete($recommendationImage1URL);
+            Storage::disk('s3')->delete($recommendationImage2URL);
+            Storage::disk('s3')->delete($recommendationImage3URL);
         }
-
+    
         return back();
     }
 
@@ -87,7 +102,7 @@ class PostsController extends Controller
             'post' => $post,
         ];
 
-        return view('users.log', $data);
+        return view('users.log2', $data);
     }
 
     public function edit($id)
@@ -102,7 +117,7 @@ class PostsController extends Controller
     }
     public function update(PostRequest $request, $id)
     {
-        $post = new Post;
+        $post = Post::findOrFail($id);
 
         $post->user_id = $request->user()->id;
         
@@ -117,13 +132,56 @@ class PostsController extends Controller
         $post->recommendation_text3 = $request->recommendation_text3;
 
 
-        $post -> cover_image_path = $this->saveImage($request->file('cover_image_path'));
+        if ($request->hasFile('cover_image_path')) {
+            $existingPath = parse_url($post->cover_image_path, PHP_URL_PATH);
+            $existingPath = ltrim($existingPath, '/'); 
+            if ($existingPath && Storage::disk('s3')->exists($existingPath)) {
+                Storage::disk('s3')->delete($existingPath);
+            }
+            $path1 = Storage::disk('s3')->putFile('tabilog', $request->file('cover_image_path'), 'public');
+            $post->cover_image_path = Storage::disk('s3')->url($path1);
+        }else {
+            $post->cover_image_path = asset('image/no_image.jpg'); 
+        }
 
-        $post->recommendation_image1 = $this->saveImage($request->file('recommendation_image1'));  
-        $post->recommendation_image2 = $this->saveImage($request->file('recommendation_image2')); 
-        $post->recommendation_image3 = $this->saveImage($request->file('recommendation_image3')); 
+        if ($request->hasFile('recommendation_image1')) {
+            $existingPath = parse_url($post->recommendation_image1, PHP_URL_PATH);
+            $existingPath = ltrim($existingPath, '/'); 
+            if ($existingPath && Storage::disk('s3')->exists($existingPath)) {
+                Storage::disk('s3')->delete($existingPath);
+            }
+            $path1 = Storage::disk('s3')->putFile('tabilog', $request->file('recommendation_image1'), 'public');
+            $post->recommendation_image1 = Storage::disk('s3')->url($path1);
+        }else {
+            $post->recommendation_image1 = asset('image/no_image.jpg'); 
+        }
+        
+        if ($request->hasFile('recommendation_image2')) {
+            $existingPath = parse_url($post->recommendation_image2, PHP_URL_PATH);
+            $existingPath = ltrim($existingPath, '/'); 
+            if ($existingPath && Storage::disk('s3')->exists($existingPath)) {
+                Storage::disk('s3')->delete($existingPath);
+            }
+            $path1 = Storage::disk('s3')->putFile('tabilog', $request->file('recommendation_image2'), 'public');
+            $post->recommendation_image2 = Storage::disk('s3')->url($path1);
+        }else {
+            $post->recommendation_image2 = asset('image/no_image.jpg'); 
+        }
+        
+        if ($request->hasFile('recommendation_image3')) {
+            $existingPath = parse_url($post->recommendation_image3, PHP_URL_PATH);
+            $existingPath = ltrim($existingPath, '/'); 
+            if ($existingPath && Storage::disk('s3')->exists($existingPath)) {
+                Storage::disk('s3')->delete($existingPath);
+            }
+            $path1 = Storage::disk('s3')->putFile('tabilog', $request->file('recommendation_image3'), 'public');
+            $post->recommendation_image3 = Storage::disk('s3')->url($path1);
+        } else {
+            $post->recommendation_image3 = asset('image/no_image.jpg'); 
+        }
+
         $post->save();
-        // return back();
+        
         return redirect()->route('/');
     }
 

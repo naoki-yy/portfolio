@@ -44,7 +44,7 @@
                     <br>
                     <label for="body" class="mt-3 font-weight-bold">内容</label>
                     <!-- <input id="body" type="text" class="form-control " name="recommendation_text1" placeholder="たび内容を記入" value="{{ old('recommendation_text1') }}"> -->
-                    <textarea id="textarea" class="form-control" name="recommendation_text1" placeholder="たび内容を記入"  value="{{ old('recommendation_text1',$post->recommendation_text1) }}"></textarea>
+                    <textarea id="textarea" class="form-control" name="recommendation_text1" placeholder="たび内容を記入">{{ old('recommendation_text1',$post->recommendation_text1) }}</textarea>
                 </div> 
             </div>
         </div>  
@@ -61,7 +61,7 @@
                     <br>
                     <label for="body" class="mt-3 font-weight-bold">内容</label>
                     <!-- <input id="body" type="text" class="form-control " name="recommendation_text2" placeholder="たび内容を記入" value="{{ old('recommendation_text2') }}"> -->
-                    <textarea id="textarea" class="form-control" name="recommendation_text2" placeholder="たび内容を記入" value="{{ old('recommendation_text2',$post->recommendation_text2) }}" ></textarea>
+                    <textarea id="textarea" class="form-control" name="recommendation_text2" placeholder="たび内容を記入">{{ old('recommendation_text2',$post->recommendation_text2) }}</textarea>
                 </div> 
             </div>
         </div> 
@@ -78,12 +78,12 @@
                     <br>
                     <label for="body" class="mt-3 font-weight-bold">内容</label>
                     <!-- <input id="body" type="textarea" class="form-control" name="recommendation_text3" placeholder="たび内容を記入" value="{{ old('recommendation_text3') }}"> -->
-                    <textarea id="textarea" class="form-control" name="recommendation_text3" placeholder="たび内容を記入" value="{{ old('recommendation_text3',$post->recommendation_text3) }}" ></textarea>
+                    <textarea id="textarea" class="form-control" name="recommendation_text3" placeholder="たび内容を記入">{{ old('recommendation_text3',$post->recommendation_text3) }}</textarea>
                 </div> 
             </div>
         </div> 
 
-        <div class="text-center"><button type="submit" class="btn btn-primary mt-5 mb-5 btn-lg">たび Log 登録</button></div>
+        <div class="text-center"><button type="submit" class="btn btn-primary mt-5 mb-5 btn-lg">更新</button></div>
     </form>
 </div>
 @endsection

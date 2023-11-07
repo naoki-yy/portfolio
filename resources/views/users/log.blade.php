@@ -15,9 +15,9 @@
     <div class="row mt-4">
         <div class="col-6">
             @if($post->cover_image_path !== null)
-            <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            <img src="{{ $post->cover_image_path}}" alt= "投稿画像" width="500" height="300" class="image-fit">
             @else
-            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            <img src="{{ asset('image/no_image.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
             @endif
         </div>
         <div class="col-6">
@@ -35,25 +35,6 @@
                 <p class="card-text"><a href="#3" class="text-muted">３ー  {{$post->recommendation_point3}}</a></p>
             </div>
     </div>
-
-    <!-- <div class="col-5">
-        <head>
-        <title>Simple Marker</title>
-        <The callback parameter is required, so we use console.debug as a noop -->
-        <!-- <script async src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=console.debug&libraries=maps,marker&v=beta">
-        </script>
-        <style> -->
-
-        
-        <!-- </style>
-        </head>
-        <body>
-            <gmp-map center="34.65945053100586,135.49954223632812" zoom="16" map-id="DEMO_MAP_ID">
-            <gmp-advanced-marker position="{{ $post->latitude }},{{ $post->longitude }}" title="{{$post->area }}">
-            </gmp-advanced-marker>
-            </gmp-map>
-        </body>
-    </div> --> 
     </div>
 
 
@@ -62,9 +43,9 @@
     <div class="row mt-4 pt-2">
         <div class="col-6">
             @if($post->recommendation_image1 !== null)
-            <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            <img src="{{ $post->recommendation_image1}}" alt= "投稿画像" width="500" height="300" class="image-fit">
             @else
-            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            <img src="{{ asset('image/no_image.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
             @endif
         </div>
         <div class="col-6">
@@ -79,10 +60,10 @@
             <h4 class="pb-3">{{$post -> recommendation_text2}}</h4>
         </div>
         <div class="col-6">
-            @if($post->recommendation_image1 !== null)
-            <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @if($post->recommendation_image2 !== null)
+            <img src="{{ $post->recommendation_image2}}" alt= "投稿画像" width="500" height="300" class="image-fit">
             @else
-            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            <img src="{{ asset('image/no_image.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
             @endif
         </div>
     </div>
@@ -91,10 +72,10 @@
     <h5 style="border-top: solid thick #6C757D" class="w-50"></h5>
     <div class="row mt-4 pt-2">
         <div class="col-6">
-            @if($post->recommendation_image1 !== null)
-            <img src="{{ asset($post->recommendation_image1)}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            @if($post->recommendation_image3 !== null)
+            <img src="{{ $post->recommendation_image3}}" alt= "投稿画像" width="500" height="300" class="image-fit">
             @else
-            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            <img src="{{ asset('image/no_image.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
             @endif
         </div>
         <div class="col-6">
@@ -107,3 +88,5 @@
 <div class="text-center"><button type="submit" class="btn btn-primary mt-5 mb-5 btn-lg"><a href="{{route('/')}}" class="text-white">ホーム</a></button></div>
 
 @endsection
+
+

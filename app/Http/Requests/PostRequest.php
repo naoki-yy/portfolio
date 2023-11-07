@@ -24,18 +24,14 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'cover_image' => 'max:255',
             'title' => 'max:255',
             'concept' => 'max:255',
             'area' => 'max:255',
             'recommendation_point1' => 'required|max:30',
-            'recommendation_image1' => "max:255",
             'recommendation_text1' => 'max:255',
             'recommendation_point2' => 'required|max:30',
-            'recommendation_image2' => 'max:255',
             'recommendation_text2' => 'max:255',
             'recommendation_point3' => 'required|max:30',
-            'recommendation_image3' => 'max:255',
             'recommendation_text3' => 'max:255',
 
         ];

@@ -47,9 +47,9 @@
                     <div class="row row-height">
                         <div class="col-5 bg-dark backgroud-height p-0">
                             @if($post->cover_image_path !== null)
-                            <img src="{{ asset($post->cover_image_path)}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
+                            <img src="{{ $post->cover_image_path}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
                             @else
-                            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
+                            <img src="{{ asset('public/image/no_image.jpg')}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
                             @endif
                         </div>
                         <div class="col-7 card text-bg-primary mb-3">

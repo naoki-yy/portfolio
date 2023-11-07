@@ -42,8 +42,7 @@
                     <input id="cover_image" type="file"  name="recommendation_image1" value="{{ old('recommendation_image1') }}">
                     <br>
                     <label for="body" class="mt-3 font-weight-bold">内容</label>
-                    <!-- <input id="body" type="text" class="form-control " name="recommendation_text1" placeholder="たび内容を記入" value="{{ old('recommendation_text1') }}"> -->
-                    <textarea id="textarea" class="form-control" name="recommendation_text1" placeholder="たび内容を記入" ></textarea>
+                    <textarea id="textarea" class="form-control" name="recommendation_text1" placeholder="たび内容を記入" >{{ old('recommendation_text1') }}</textarea>
                 </div> 
             </div>
         </div>  
@@ -59,8 +58,7 @@
                     <input id="cover_image" type="file"  name="recommendation_image2" value="{{ old('recommendation_image2') }}">
                     <br>
                     <label for="body" class="mt-3 font-weight-bold">内容</label>
-                    <!-- <input id="body" type="text" class="form-control " name="recommendation_text2" placeholder="たび内容を記入" value="{{ old('recommendation_text2') }}"> -->
-                    <textarea id="textarea" class="form-control" name="recommendation_text2" placeholder="たび内容を記入" ></textarea>
+                    <textarea id="textarea" class="form-control" name="recommendation_text2" placeholder="たび内容を記入" >{{ old('recommendation_text2') }}</textarea>
                 </div> 
             </div>
         </div> 
@@ -76,8 +74,7 @@
                     <input id="cover_image" type="file"  name="recommendation_image3" value="{{ old('recommendation_image3') }}">
                     <br>
                     <label for="body" class="mt-3 font-weight-bold">内容</label>
-                    <!-- <input id="body" type="textarea" class="form-control" name="recommendation_text3" placeholder="たび内容を記入" value="{{ old('recommendation_text3') }}"> -->
-                    <textarea id="textarea" class="form-control" name="recommendation_text3" placeholder="たび内容を記入" ></textarea>
+                    <textarea id="textarea" class="form-control" name="recommendation_text3" placeholder="たび内容を記入" >{{ old('recommendation_text3') }}</textarea>
                 </div> 
             </div>
         </div> 
