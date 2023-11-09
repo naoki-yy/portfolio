@@ -24,6 +24,7 @@ class PostsController extends Controller
         $post->title = $request->title;
         $post->concept = $request->concept;
         $post->area = $request->area;
+        $post->template_id = $request->template_id;
 
 
         $post->recommendation_point1 = $request->recommendation_point1;
@@ -102,7 +103,7 @@ class PostsController extends Controller
             'post' => $post,
         ];
 
-        return view('users.log2', $data);
+        return view('users.log', $data);
     }
 
     public function edit($id)

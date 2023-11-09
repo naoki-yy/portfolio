@@ -35,7 +35,7 @@
         @if($post)
         <div class="margin-welcome">
             <div class="row">
-                <div class="col-9 bg-secondary colback">
+                <div class="col-9 colback" style="background-color: #8fcafa">
                     <div class="d-flex justify-content-between">
                             <h4 class="text-white pt-1">{{ $post->title }}</h4>
                             <h5>
@@ -47,9 +47,9 @@
                     <div class="row row-height">
                         <div class="col-5 bg-dark backgroud-height p-0">
                             @if($post->cover_image_path !== null)
-                            <img src="{{ $post->cover_image_path}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
+                            <img src="{{ $post->cover_image_path}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block object-fit-cover" style="width: 100%;">
                             @else
-                            <img src="{{ asset('public/image/no_image.jpg')}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
+                            <img src="{{ asset('public/image/no_image.jpg')}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block object-fit-cover" style="width: 100%;">
                             @endif
                         </div>
                         <div class="col-7 card text-bg-primary mb-3">
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3 bg-secondary">
+                <div class="col-3" style="background-color: #8fcafa">
                     @if(Auth::check() && Auth::user()->name === $post ->user->name)
                     <h4 class="mt-3"><a href="{{ route('users.mypage') }}" class=" text-white">たび人：{{$post ->user->name}}</a></h4>
                     @else

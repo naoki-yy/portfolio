@@ -20,10 +20,20 @@
                     <input id="title" type="text" class="form-control " name="area" value="{{ old('area') }}">
                 </div>
             </div>
-            <div class="form-group pb-5 mt-3 mb-5">
-                <label for="cover_image">背景画像の投稿（500px✖️300px）</label>
-                <br>
-                <input id="cover_image" type="file"  name="cover_image_path" value="{{ old('cover_image_path') }}">
+            <div class="form-row mt-3 mb-5 pb-5">
+                <div class="form-group col6">
+                    <label for="cover_image">背景画像の投稿</label>
+                    <br>
+                    <input id="cover_image" type="file"  name="cover_image_path" value="{{ old('cover_image_path') }}">
+                </div>
+                <div class="form-group col-4">
+                    <label for="template">テンプレート選択</label>
+                    <select class="form-control" id="template" name="template_id">
+                        <option value="1">テンプレート1</option>
+                        <option value="2">テンプレート2</option>
+                        <option value="3">テンプレート3</option>
+                    </select>
+                </div>
             </div>
             
         </div>

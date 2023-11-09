@@ -19,7 +19,7 @@
         <h5 style="border-top: solid thick #6C757D" class="w-50"></h5>
         <div class="row mt-4 pt-2">
             <div class="col-6"> 
-                <img src="{{ asset('storage/image/トップ画像例１.png')}}" alt= "投稿画像" width="550" height="300" class="image-fit">
+                <img src="{{ asset('image/no_image.jpg')}}" alt= "投稿画像" width="550" height="300" class="image-fit">
             </div>
             <div class="col-6">
                 <h4 class="pb-3">誰でもすぐに旅のおすすめを投稿できる！</h4>
@@ -45,7 +45,7 @@
             </ul>
         </div>
         <div class="col-6">
-            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
+            <img src="{{ asset('image/no_image.jpg')}}" alt= "投稿画像" width="500" height="300" class="image-fit">
         </div>
     </div>
 

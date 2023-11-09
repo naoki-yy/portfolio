@@ -1,4 +1,4 @@
-<header>
+<header style="background-color: #f2f7fb;">
     <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="d-flex align-items-end m-2">
             <div>
@@ -30,8 +30,3 @@
         </div>
     </nav>
 </header>
-<!-- @if(Auth::check())
-    <h5 class="text-right mr-3 pb-3">
-        ユーザー：<span class="user-name">{{ Auth::user()->name }}</span>
-</h5>
-@endif -->
