@@ -1,34 +1,33 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-between mb-2">
-    <h3 class="mt-2 mb-3 ml-3">たび Log  検索結果</h3>
-    <button type="submit" class="btn btn-primary mr-3 btn-sm"><a href="{{route('/')}}" class="text-white">ホームへ戻る</a></button>
+<div class="d-flex justify-content-between mb-4">
+    <h2 class="mt-2 mb-3 ml-3 font-weight-bold">たび Log  検索結果</h2>
+    <button type="submit" class="btn btn-primary mr-3 mt-1 btn-sm" style="height:40px;"><a href="{{route('/')}}" class="text-white">ホームへ戻る</a></button>
 </div>
-   
+   <div class="margin-welocome">
     @if($posts->count() > 0)    
     @foreach ($posts as $post)
         @php
             $user = $post->user->get();
-            $totalFavorites = $post->favoriteUsers()->count();
+                $totalFavorites = $post->favoriteUsers()->count();
         @endphp
-        
         <div class="margin-welcome">
             <div class="row">
-                <div class="col-9 bg-secondary colback">
+                <div class="col-9 colback" style="background-color: #8fcafa">
                     <div class="d-flex justify-content-between">
-                        <h4 class="text-white">たび Logタイトル : {{$post->title}}</h4>
-                        <h5>
-                            <div class="text-right">
-                            <span class="badge badge-pill badge-primary">{{ $totalFavorites }} いいね!</span>
-                        </div>
-                        </h5>
+                            <h4 class="text-white pt-1 font-weight-bold">{{ $post->title }}</h4>
+                            <h5>
+                                <div class="text-right align-middle">
+                                <div class="badge badge-pill badge-primary mt-2">{{ $totalFavorites }} いいね!</div>
+                                </div>
+                            </h5>
                     </div>
                     <div class="row row-height">
                         <div class="col-5 bg-dark backgroud-height p-0">
-                        @if($post->cover_image_path !== null)
-                            <img src="{{ asset($post->cover_image_path)}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
+                            @if($post->cover_image_path !== null)
+                            <img src="{{ $post->cover_image_path}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block object-fit-cover" style="width: 100%;">
                             @else
-                            <img src="{{ asset('storage/image/ZpY2O0NcYLi8hrtLwuzhE6bHtjTorzwLEnyNCs0M.jpg')}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block image-fit" style="width: 100%;">
+                            <img src="{{ asset('public/image/no_image.jpg')}}" alt= "投稿画像" width="508" height="206"class="mx-auto d-block object-fit-cover" style="width: 100%;">
                             @endif
                         </div>
                         <div class="col-7 card text-bg-primary mb-3">
@@ -40,29 +39,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3 bg-secondary">
-                    <h4 class="mt-3 text-white">たび人：{{$post ->user->name}}</h4>
-                    <button type="button" class="mt-3 btn btn-primary btn-lg mb-3"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
-                    </br>
-                    <!-- <button type="button" class="mt-3 btn btn-secondary">いいね！</button> -->
+                <div class="col-3" style="background-color: #8fcafa">
+                    @if(Auth::check() && Auth::user()->name === $post ->user->name)
+                    <h4 class="mt-3"><a href="{{ route('users.mypage') }}" class=" text-white font-weight-bold">たび人：{{$post ->user->name}}</a></h4>
+                    @else
+                    <h4 class="mt-3"><a href="{{ route('users.show',$post ->user_id) }}" class=" text-white">たび人：{{$post ->user->name}}</a></h4>
+                    @endif
+                    <button type="button" class="mt-3 btn border btn-lg mb-3"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
                     @include('favorite.favorite_button', ['post' => $post])
-                    </br>
-                    <button type="button" class="mt-2 btn btn-primary">SNS共有</button>
                     @if (Auth::id() === $post->user_id)
-                        <form method="POST" action="{{ route('post.delete', $post->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">このたび Logを削除する</button>
-                        </form>
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary mt-4">編集</a>
+                            <form method="POST" action="{{ route('post.delete', $post->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger mt-4">削除</button>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>
-        </div>     
-    @endforeach
-    @else 
-    <h3>検索結果はありません</h3>
-    @endif
-
+        </div>
+        @endforeach
+        @else
+            <h3 class="ml-3">検索結果はありません。<a href="{{ route('post.create') }}" class="font-weight-bold ml-3">投稿</a>しますか？</h3>
+        @endif
+</div>
     {{ $posts->links('pagination::bootstrap-4') }}
 
 @endsection

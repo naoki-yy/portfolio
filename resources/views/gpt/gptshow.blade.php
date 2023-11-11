@@ -1,27 +1,48 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-between mb-2">
-    <h3 class="mt-2 mb-3 ml-3 font-weight-bold">{{ $place }} の投稿一覧</h3>
-    <button type="submit" class="btn btn-primary mr-3 btn-sm"><a href="{{route('/')}}" class="text-white">ホームへ戻る</a></button>
-</div>
-   
-<div>
-    @foreach ($posts as $post)
+<div class="container"> 
+    <h1 class="mb-4 pb-1font-weight-bold">AIの提案場所</h1>
+    <h3 class="mb-4">
         @php
-            $user = $post->user->get();
-                $totalFavorites = $post->favoriteUsers()->count();
+            $words = explode(' ', $response_text);
+
+            $linkedResponseText = '';
+
+            $noLinkPlaces = [];
+
+            foreach ($words as $word) {
+                if (in_array($word, $placeNames)) {
+                    $linkedResponseText .= "<a href='" . route("topic.show", ["place" => $word]) . "'>$word</a> ";
+                } else {
+                    $linkedResponseText .= $word . ' ';
+                
+            
+
+                }
+            }
         @endphp
-        @if($post)
-        <div class="margin-welcome">
+        {!! $linkedResponseText !!}
+        </h3>
+
+
+        @if ($areaPosts->isNotEmpty())
+            <h2 class="pt-5 font-weight-bold">{{ $response_text }} の投稿一覧</h2>
+            @foreach ($areaPosts as $post)
+                @php
+                    $user = $post->user->get();
+                    $totalFavorites = $post->favoriteUsers()->count();
+                @endphp
+
+            <div>
             <div class="row">
                 <div class="col-9 colback" style="background-color: #8fcafa">
                     <div class="d-flex justify-content-between">
-                            <h4 class="text-white pt-1 font-weight-bold">{{ $post->title }}</h4>
-                            <h5>
-                                <div class="text-right align-middle">
+                        <h4 class="text-white pt-1 font-weight-bold">{{ $post->title }}</h4>
+                        <h5>
+                            <div class="text-right align-middle">
                                 <div class="badge badge-pill badge-primary mt-2">{{ $totalFavorites }} いいね!</div>
-                                </div>
-                            </h5>
+                            </div>
+                        </h5>
                     </div>
                     <div class="row row-height">
                         <div class="col-5 bg-dark backgroud-height p-0">
@@ -60,12 +81,14 @@
                     @endif
                 </div>
             </div>
-        </div>
-        @else 
-        <h3>検索結果はありません</h3>
+        </div>     
+        @endforeach
+        @else
+            <h5 class="pt-2">このエリアに関連する投稿はありません。<a href="{{ route('post.create') }}" class="font-weight-bold">投稿</a>しますか？</h5>
         @endif
-    @endforeach
+        {{$areaPosts->appends(request()->query())->links('pagination::bootstrap-4')}} 
+
+    <a href="{{ route('top') }}" class="mt-3">再度、AIで探す</a>
 </div>
-{{ $posts->links('pagination::bootstrap-4') }}
+</div>
 @endsection
-    

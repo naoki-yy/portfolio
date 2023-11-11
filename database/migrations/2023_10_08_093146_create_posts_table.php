@@ -22,7 +22,6 @@ class CreatePostsTable extends Migration
             $table->string("title");
             $table->string("concept");
             $table->string("area");
-            $table->integer("template_id");
             $table->string("recommendation_point1");
             $table->string("recommendation_image1")->nullable();
             $table->string("recommendation_text1");          

@@ -17,14 +17,6 @@
     height: 100vh; 
 }
 
-.custom-hr {
-    border-top-width: 10px; 
-}
-
-.font-weight-bold-custom {
-    font-weight: bold;
-}
-
 ul.navbar-nav li.nav-item1 a.nav-link {
     color: rgb(106, 106, 243);
 }

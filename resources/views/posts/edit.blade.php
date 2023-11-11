@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class= "container">
-    <h2 class="mt-3">たび Logを投稿する</h2>
+    <h2 class="mt-3 pb-3 font-weight-bold">たび Logを編集する</h2>
     @include('commons.error_messages')
     <form method="POST" action="{{ route('post.update',$post->id) }}" enctype="multipart/form-data">
         @csrf
@@ -29,7 +29,7 @@
             
         </div>
 
-        <h3 class="mt-3">たびの<strong>「おすすめポイント」</strong>を登録</h3>
+        <h3 class="mt-3 mb-4">たびの<strong>「おすすめポイント」</strong>を編集</h3>
 
 
         <div class="form-group mt-3">

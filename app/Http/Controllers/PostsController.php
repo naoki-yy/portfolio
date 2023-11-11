@@ -24,8 +24,6 @@ class PostsController extends Controller
         $post->title = $request->title;
         $post->concept = $request->concept;
         $post->area = $request->area;
-        $post->template_id = $request->template_id;
-
 
         $post->recommendation_point1 = $request->recommendation_point1;
         $post->recommendation_text1 = $request->recommendation_text1;

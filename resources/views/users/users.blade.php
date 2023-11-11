@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div>
-    <h1 class="mt-1 mb-2 text-center">みんなのたび Log<i class="fa-regular fa-paper-plane ml-2 mb-2" style="color: #343a3f;"></i></h1>
+    <h1 class="mt-3 mb-4 text-center font-weight-bold">みんなのたび Log<i class="fa-regular fa-paper-plane ml-2 mb-2" style="color: #343a3f;"></i></h1>
     
     <form action="{{ route('post.search') }}" method="GET" class="ml-3 pt-3 mb-4 mx-auto border-custom1">
     @csrf
@@ -37,10 +37,10 @@
             <div class="row">
                 <div class="col-9 colback" style="background-color: #8fcafa">
                     <div class="d-flex justify-content-between">
-                            <h4 class="text-white pt-1">{{ $post->title }}</h4>
+                            <h4 class="text-white pt-1 font-weight-bold">{{ $post->title }}</h4>
                             <h5>
                                 <div class="text-right align-middle">
-                                <span class="badge badge-pill badge-primary">{{ $totalFavorites }} いいね!</span>
+                                <div class="badge badge-pill badge-primary mt-2">{{ $totalFavorites }} いいね!</div>
                                 </div>
                             </h5>
                     </div>
@@ -63,20 +63,20 @@
                 </div>
                 <div class="col-3" style="background-color: #8fcafa">
                     @if(Auth::check() && Auth::user()->name === $post ->user->name)
-                    <h4 class="mt-3"><a href="{{ route('users.mypage') }}" class=" text-white">たび人：{{$post ->user->name}}</a></h4>
+                    <h4 class="mt-3"><a href="{{ route('users.mypage') }}" class=" text-white font-weight-bold">たび人：{{$post ->user->name}}</a></h4>
                     @else
                     <h4 class="mt-3"><a href="{{ route('users.show',$post ->user_id) }}" class=" text-white">たび人：{{$post ->user->name}}</a></h4>
                     @endif
-                    <button type="button" class="mt-3 btn border btn-lg mb-3 mb-5"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
+                    <button type="button" class="mt-3 btn border btn-lg mb-3"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
                     @include('favorite.favorite_button', ['post' => $post])
                     @if (Auth::id() === $post->user_id)
                         <div class="d-flex justify-content-between mt-4">
-                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">編集</a>
-                        <form method="POST" action="{{ route('post.delete', $post->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">削除</button>
-                        </form>
+                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary mt-4">編集</a>
+                            <form method="POST" action="{{ route('post.delete', $post->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger mt-4">削除</button>
+                            </form>
                         </div>
                     @endif
                 </div>

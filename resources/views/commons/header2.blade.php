@@ -3,8 +3,8 @@
         <div class="d-flex align-items-end m-2">
             <div>
             <h1>
-                <a class="navbar-brand text-white" href="/"><div class="display-4 text-dark">たび Log</div></a>
-                <i class="fa-regular fa-paper-plane" style="color: #343a3f;"></i>
+                <a class="navbar-brand text-white" href="/"><div class="display-4 text-dark font-weight-bold">たび Log</div></a>
+                <i class="fa-regular fa-paper-plane font-weight-bold" style="color: #343a3f;"></i>
             </h1>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
                 <span class="navbar-toggler-icon"></span>
@@ -13,14 +13,14 @@
         </div>
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
-            <ul class="navbar-nav text-primary">
+            <ul class="navbar-nav text-primary  font-weight-bold">
                 @if (Auth::check())
                 @php
                     $user = Auth::User()
                 @endphp
                     <li class="nav-item1"><a href="{{ route('/') }}" class="nav-link ">ホーム</a></li>
                     <li class="nav-item1"><a href="{{ route('logout') }}" class="nav-link">ログアウト</a></li>
-                    <li class="nav-item1"><a href="{{ route('users.mypage')}}" class="nav-link ml-4"><h5>{{$user->name}}</h5></a></li>
+                    <li class="nav-item1"><a href="{{ route('users.mypage')}}" class="nav-link ml-3"><h5><i class="fa-solid fa-user mr-2" style="color: #000000;"></i>{{$user->name}}</h5></a></li>
                 @else
                     <li class="nav-item1"><a href="{{ route('/') }}" class="nav-link">ホーム</a></li>
                     <li class="nav-item1"><a href="{{ route('login') }}" class="nav-link">ログイン</a></li>

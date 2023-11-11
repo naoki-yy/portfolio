@@ -40,6 +40,6 @@ class chatGPTController extends Controller
         $areaPosts = Post::where('area', 'LIKE', "%$response_text%")->paginate(4);
 
         
-        return view('gptshow', compact('sentence','placeNames', 'response_text', 'areaPosts'));
+        return view('gpt.gptshow', compact('sentence','placeNames', 'response_text', 'areaPosts'));
     }
 }

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <div class="d-flex justify-content-between">
-    <h2 class="mt-2 mb-3 ml-3 mr-3">{{$user->name}} のたび Log</h2>
+    <h2 class="mt-2 mb-3 ml-3 mr-3 font-weight-bold">{{$user->name}} のたび Log</h2>
     <form method="POST" action="{{ route ( 'users.delete' , $user->id) }}" >
         @csrf
         @method("DELETE")
-        <button type="submit" class="btn btn-danger btn-sm mr-3">退会する</button>
+        <button type="button" class="btn btn-danger btn-sm mr-3" id="deleteButton">退会する</button>
     </form>
 </div>
 
@@ -27,10 +27,10 @@
             <div class="row">
                 <div class="col-9 colback" style="background-color: #8fcafa">
                     <div class="d-flex justify-content-between">
-                        <h4 class="text-white pt-1">たび Logタイトル : {{$post->title}}</h4>
+                        <h4 class="text-white pt-2 font-weight-bold">たび Logタイトル : {{$post->title}}</h4>
                         <h5>
                             <div class="text-right">
-                                <span class="badge badge-pill badge-primary">{{ $totalFavorites }} いいね!</span>
+                                <div class="badge badge-pill badge-primary mt-2">{{ $totalFavorites }} いいね!</div>
                             </div>
                         </h5>
                     </div>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="col-3" style="background-color: #8fcafa">
-                    <h4 class="mt-3 text-white">たび人：{{$post-> user -> name}}</h4>
+                    <h4 class="mt-3 text-white font-weight-bold">たび人：{{$post-> user -> name}}</h4>
                     <button type="button" class="mt-3 btn border btn-lg mb-5"><a href="{{ route('posts.log', ['user_id' => $post->user_id, 'id' => $post->id]) }}" class="text-white">たび Logを見る</a></button>
                     @if (Auth::id() === $post->user_id)
                         <div class="d-flex justify-content-between mt-4">
@@ -70,7 +70,7 @@
     @endforeach
     {{ $posts->links('pagination::bootstrap-4') }}
 @else
-<p>ユーザは投稿していません</p>
+<p class="ml-5 font-weight-bold">ユーザは投稿していません</p>
 @endif
 
 
