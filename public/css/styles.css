@@ -25,12 +25,24 @@
     font-weight: bold;
 }
 
-.bg02 {
-    background : url('../image/たびLog画面.png') no-repeat ;
-    background-size: cover;
-    object-fit: cover;
-    width: 480px;
-    height: 280px; 
+.bg-custom2 {
+    background-color: #1bacb6;
+}
+
+.border-position {
+    position: relative;
+}
+
+.border-custom{
+    margin: 0 auto;
+    width: 70%;
+    border-width: 10px !important;
+    border-radius: 15px;
+    border-color: #1bacb6 !important;
+    position: absolute;
+    top: 49%;
+    left: 15%;
+    z-index: -10;
 }
 
 

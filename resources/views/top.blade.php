@@ -13,20 +13,18 @@
     <div class="container pt-4">
         <h1 class="text-center font-weight-bold mb-1" style="color: #1bacb6;">たび Logとは？</h1>
         <hr class="mx-auto w-50 custom-hr">
-        <h2 class="mt-5 pt-1 text-center font-weight-bold">旅場所のおすすめポイントをシェアするサイト</h2>
-        <div class="row mt-4 pt-2 pb-3">
-            <div class="col-6 bg02"></div>
-            <div class="col-6">
-                <h4 class="pb-3 font-weight-bold">投稿３ステップ！<i class="fa-solid fa-shoe-prints"></i></h4>
-                <ol>
-                    <li class="mb-5"><span class="font-weight-bold-custom">「ログイン」or「新規ユーザ登録」</span>でユーザログイン！</li>
-                    <li class="mb-5"><span class="font-weight-bold-custom">「上部のたびLog登録する」</span>をクリック！</li>
-                    <li class="mb-5"><span class="font-weight-bold-custom">おすすめポイント「３つ！」その説明「３つ！」関連画像「３つ！」</span>で投稿完了！</li>
-                </ol>
+        <h2 class="mt-5 pt-1 text-center font-weight-bold">旅場所のおすすめポイントをシェアするサイト<i class="fa-solid fa-paper-plane fa-xl ml-3"></i></h2>
+        <div class="mt-4 pt-3 pb-5">
+            <div class="text-center mt-3 border-position">
+                <h2 class="pb-3 font-weight-bold bg-custom2 w-50 mx-auto text-white pt-2 mb-5">投稿３ステップ！<i class="fa-solid fa-shoe-prints"></i></h2>
+                <ul class="text-center list-unstyled border border-custom pb-1">
+                    <li class="mb-3 pt-5"><span class="font-weight-bold-custom">「ログイン」or「新規ユーザ登録」</span>でユーザログイン！</li>
+                    <li class="mb-3"><span class="font-weight-bold-custom">「上部のたびLog登録する」</span>をクリック！</li>
+                    <li class="mb-3"><span class="font-weight-bold-custom">おすすめポイント「３つ！」その説明「３つ！」関連画像「３つ！」</span>で投稿完了！</li>
+                </ul>
             </div>
         </div>
-
-        <h1 class="text-center font-weight-bold mt-5" style="color: #1bacb6;">特徴</h1>
+        <h1 class="text-center font-weight-bold pt-5 mt-5" style="color: #1bacb6;">特徴</h1>
         <hr class="mx-auto w-50 custom-hr">
         <section class="container mt-5 mb-5">
             <div class="row">
@@ -67,7 +65,7 @@
                 <div class="col-md-6 text-center">
                     <div class="row ml-5">
                         <div class="col-2 mt-3">
-                            <h1><i class="fa-solid fa-share-nodes" style="color: #1bacb6;"></i></h1>
+                            <h1><i class="fa-solid fa-thumbs-up" style="color: #1bacb6;"></i></h1>
                         </div>
                         <div class="col-8">
                             <h4 class="text-left font-weight-bold">いいね！で簡単アクセス</h4>
