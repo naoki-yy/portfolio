@@ -15,9 +15,7 @@
         <hr class="mx-auto w-50 custom-hr">
         <h2 class="mt-5 pt-1 text-center font-weight-bold">旅場所のおすすめポイントをシェアするサイト</h2>
         <div class="row mt-4 pt-2 pb-3">
-            <div class="col-6"> 
-                <img src="{{ asset('image/たびLog画面.png')}}" alt= "投稿画像" width="480" height="280" class="object-fit-cover">
-            </div>
+            <div class="col-6 bg02"></div>
             <div class="col-6">
                 <h4 class="pb-3 font-weight-bold">投稿３ステップ！<i class="fa-solid fa-shoe-prints"></i></h4>
                 <ol>

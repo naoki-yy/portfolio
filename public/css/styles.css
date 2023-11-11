@@ -25,6 +25,15 @@
     font-weight: bold;
 }
 
+.bg02 {
+    background : url('../image/たびLog画面.png') no-repeat ;
+    background-size: cover;
+    object-fit: cover;
+    width: 480px;
+    height: 280px; 
+}
+
+
 ul.navbar-nav li.nav-item1 a.nav-link {
     color: rgb(106, 106, 243);
 }
@@ -76,10 +85,6 @@ ul.navbar-nav li.nav-item1 a.nav-link {
     display: inline-block;
     margin-top: 60px;
     margin-left: 10px;
-}
-
-.image-fit {
-    object-fit: cover;
 }
 
 
