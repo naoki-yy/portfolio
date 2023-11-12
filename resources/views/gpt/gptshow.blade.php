@@ -33,7 +33,7 @@
                     $totalFavorites = $post->favoriteUsers()->count();
                 @endphp
 
-            <div>
+            <div class="margin-welcome2">
             <div class="row">
                 <div class="col-9 colback" style="background-color: #8fcafa">
                     <div class="d-flex justify-content-between">

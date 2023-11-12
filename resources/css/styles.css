@@ -72,6 +72,11 @@ ul.navbar-nav li.nav-item1 a.nav-link {
   height: 200px;
 }
 
+.margin-welcome2 {
+    margin-bottom: 80px;
+    height: 200px;
+  }
+
 .row-height {
     height: 206px;
 }
